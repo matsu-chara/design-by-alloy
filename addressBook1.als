@@ -32,4 +32,10 @@ assert delUndoesAdd {
     no n.(b.addr) and add [b, b', n, a] and del [b', b'', n]
       implies b.addr = b''.addr
 }
-check delUndoesAdd for 3
+check delUndoesAdd for 10 but 3 Book
+
+assert addIdempotent {
+  all b, b', b'': Book, n: Name, a: Addr |
+    add [b, b', n, a] and add [b', b'', n, a]
+      implies b == b' and b' == b''
+}

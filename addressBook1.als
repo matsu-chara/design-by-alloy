@@ -13,4 +13,9 @@ pred show(b: Book) {
 pred add(b, b': Book, n: Name, a: Addr) {
   b'.addr = b.addr + n -> a
 }
-run add for 3 but 2 Book
+
+pred showAdd(b, b': Book, n: Name, a: Addr) {
+  add [b, b', n, a]
+  #Name.(b'.addr) > 1
+}
+run showAdd for 3 but 2 Book

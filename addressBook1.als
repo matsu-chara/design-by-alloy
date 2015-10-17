@@ -18,4 +18,11 @@ pred showAdd(b, b': Book, n: Name, a: Addr) {
   add [b, b', n, a]
   #Name.(b'.addr) > 1
 }
-run showAdd for 3 but 2 Book
+
+pred del(b, b': Book, n: Name) {
+  b'.addr = b.addr - n -> Addr
+}
+
+fun lookup (b: Book, n: Name) : set Addr {
+  n.(b.addr)
+}

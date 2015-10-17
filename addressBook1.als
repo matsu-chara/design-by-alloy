@@ -37,5 +37,13 @@ check delUndoesAdd for 10 but 3 Book
 assert addIdempotent {
   all b, b', b'': Book, n: Name, a: Addr |
     add [b, b', n, a] and add [b', b'', n, a]
-      implies b == b' and b' == b''
+      implies b'.addr = b''.addr
 }
+check addIdempotent for 3
+
+assert addLocal {
+  all b, b': Book, n, n': Name, a: Addr |
+    add [b, b', n, a] and n != n'
+      implies lookup [b, n] = lookup [b', n]
+}
+check addLocal for 3 but 2 Book
